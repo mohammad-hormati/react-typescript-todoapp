@@ -1,16 +1,30 @@
+import { createTheme, ThemeProvider } from '@mui/material';
+import { lightBlue, teal } from '@mui/material/colors';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: lightBlue[300],
+      main: lightBlue[500],
+      dark: lightBlue[900],
+    },
+    secondary: {
+      light: teal[300],
+      main: teal[500],
+      dark: teal[900],
+    },
+  },
+});
+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
-  <React.StrictMode>
+  <ThemeProvider theme={theme}>
     <App />
-  </React.StrictMode>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
