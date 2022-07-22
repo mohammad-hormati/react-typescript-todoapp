@@ -1,13 +1,14 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import './App.css';
 import AppHeader from './component/AppHeader';
 import AppMain from './component/AppMain';
 
 const App: FC = () => {
+  const [login, setLogin] = useState<boolean>(false);
   return (
     <>
-      <AppHeader title="ToDo App" />
-      <AppMain />
+      <AppHeader login={login} setLogin={setLogin} />
+      <AppMain login={login} />
     </>
   );
 };

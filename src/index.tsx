@@ -17,6 +17,9 @@ const theme = createTheme({
       main: teal[500],
       dark: teal[900],
     },
+    text: {
+      primary: '#ffffff',
+    },
   },
 });
 
