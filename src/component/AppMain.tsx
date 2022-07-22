@@ -4,7 +4,7 @@ import { Theme } from '@mui/material/styles';
 import { FC } from 'react';
 import LogOutMessage from './LogOutMessage';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles<Theme>((theme) => ({
   root: {
     minHeight: 'calc(100vh - 64px)',
     backgroundColor: theme.palette.primary.main,
