@@ -3,6 +3,7 @@ import { makeStyles } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
 import { FC } from 'react';
 import LogOutMessage from './LogOutMessage';
+import TodoComponent from './TodoComponent';
 
 const useStyles = makeStyles<Theme>((theme) => ({
   root: {
@@ -20,7 +21,12 @@ type AppMainProps = {
 
 const AppMain: FC<AppMainProps> = ({ login }: AppMainProps) => {
   const classes = useStyles();
-  return <Box className={classes.root}>{!login && <LogOutMessage />}</Box>;
+  return (
+    <Box className={classes.root}>
+      {!login && <LogOutMessage />}
+      {login && <TodoComponent />}
+    </Box>
+  );
 };
 
 export default AppMain;
