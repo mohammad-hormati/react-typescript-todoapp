@@ -1,45 +1,53 @@
+import React, { ChangeEvent, useState, FC, Dispatch, SetStateAction } from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
-import { makeStyles, useTheme } from '@mui/styles';
+import { useTheme } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
-import { FC } from 'react';
+import { useStyles } from '../styles/TodoInputStyle';
 
-const useStyles = makeStyles<Theme>((theme) => ({
-  root: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: '60%',
-    backgroundColor: theme.palette.primary.dark,
-    borderRadius: '10px',
-    padding: `${theme.spacing(3)} ${theme.spacing(2)}`,
-  },
-  inputContainer: {
-    '& .MuiInputLabel-root': {
-      color: theme.palette.text.primary,
-      '&.Mui-focused': {
-        color: '#ffffff',
-      },
-    },
-    '& .MuiInput-root': {
-      '&::before': {
-        borderBottom: `1px solid ${theme.palette.text.primary}`,
-      },
-      '&::after': {
-        borderBottom: `2px solid ${theme.palette.text.primary}`,
-      },
-    },
-  },
-}));
+type TodoInputProps = {
+  setTodo: Dispatch<SetStateAction<{ title: string; description: string; confirm: boolean }[]>>;
+};
 
-const TodoInput: FC = () => {
+const TodoInput: FC<TodoInputProps> = ({ setTodo }: TodoInputProps) => {
+  // material ui styles
   const classes = useStyles();
   const theme = useTheme<Theme>();
+
+  // state
+  const [title, setTitle] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+
+  // handle onchange input
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    e.target.name === 'title' ? setTitle(e.target.value) : setDescription(e.target.value);
+  };
+
+  // handle onsubmit form
+  const handleClick = () => {
+    setTodo((prev) => [...prev, { title, description, confirm: false }]);
+    setTitle('');
+    setDescription('');
+  };
+
   return (
     <Box className={classes.root}>
       <Stack direction="row" spacing={3} className={classes.inputContainer}>
-        <TextField label="Title" variant="standard" />
-        <TextField label="Description" variant="standard" />
+        <TextField
+          name="title"
+          label="Title"
+          variant="standard"
+          value={title}
+          onChange={handleOnChange}
+        />
+        <TextField
+          name="description"
+          label="Description"
+          variant="standard"
+          value={description}
+          onChange={handleOnChange}
+        />
       </Stack>
-      <Button variant="contained">
+      <Button variant="contained" onClick={handleClick}>
         <Typography
           color={theme.palette.text.primary}
           variant="subtitle1"
