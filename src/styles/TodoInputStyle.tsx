@@ -7,8 +7,10 @@ export const useStyles = makeStyles<Theme>((theme) => ({
     justifyContent: 'space-between',
     width: '60%',
     backgroundColor: theme.palette.primary.dark,
-    borderRadius: '10px',
+    borderRadius: theme.spacing(2),
     padding: `${theme.spacing(3)} ${theme.spacing(2)}`,
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
   },
   inputContainer: {
     '& .MuiInputLabel-root': {

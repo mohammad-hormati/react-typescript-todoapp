@@ -19,7 +19,8 @@ const AppHeader: FC<AppHeaderProps> = ({ login, setLogin }: AppHeaderProps) => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, fontWeight: 'bold', color: '#ffffff' }}
+            color={theme.palette.text.primary}
+            sx={{ flexGrow: 1, fontWeight: 'bold' }}
           >
             ToDo App
           </Typography>

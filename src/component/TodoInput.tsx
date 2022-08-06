@@ -1,14 +1,14 @@
-import React, { ChangeEvent, useState, FC, Dispatch, SetStateAction } from 'react';
+import { ChangeEvent, useState, FC, Dispatch, SetStateAction } from 'react';
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import { useTheme } from '@mui/styles';
 import { Theme } from '@mui/material/styles';
 import { useStyles } from '../styles/TodoInputStyle';
 
 type TodoInputProps = {
-  setTodo: Dispatch<SetStateAction<{ title: string; description: string; confirm: boolean }[]>>;
+  setTodos: Dispatch<SetStateAction<{ title: string; description: string; confirm: boolean }[]>>;
 };
 
-const TodoInput: FC<TodoInputProps> = ({ setTodo }: TodoInputProps) => {
+const TodoInput: FC<TodoInputProps> = ({ setTodos }: TodoInputProps) => {
   // material ui styles
   const classes = useStyles();
   const theme = useTheme<Theme>();
@@ -24,7 +24,7 @@ const TodoInput: FC<TodoInputProps> = ({ setTodo }: TodoInputProps) => {
 
   // handle onsubmit form
   const handleClick = () => {
-    setTodo((prev) => [...prev, { title, description, confirm: false }]);
+    setTodos((prev) => [...prev, { title, description, confirm: false }]);
     setTitle('');
     setDescription('');
   };
